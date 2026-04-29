@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Beyond Visibility — AI doesn't know you exist. We fix that.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;
+  --navy:#0f1829;
+  --blue:#2563eb;
+  --blue-lt:#3b82f6;
+  --blue-dim:#eff6ff;
+  --gray:#6b7280;
+  --gray-lt:#f4f5f7;
+  --border:#e5e7eb;
+  --white:#ffffff;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 6vw;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-size:1.2rem;color:var(--black);text-decoration:none}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{font-size:0.82rem;color:var(--gray);text-decoration:none;font-weight:400;transition:color 0.2s}
+.nav-links a:hover{color:var(--black)}
+.nav-cta{padding:0.6rem 1.4rem;background:var(--black);color:var(--white);font-size:0.82rem;font-weight:500;font-family:var(--sans);text-decoration:none;letter-spacing:0.02em;transition:background 0.2s,transform 0.15s;white-space:nowrap}
+.nav-cta:hover{background:var(--blue);transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:9rem 6vw 6rem;position:relative;overflow:hidden;background:var(--white)}
+.hero-prism{position:absolute;right:-4vw;top:50%;transform:translateY(-50%);width:52vw;max-width:680px;opacity:0.15;pointer-events:none;z-index:0}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.72rem;font-weight:500;letter-spacing:0.18em;color:var(--blue);text-transform:uppercase;margin-bottom:1.8rem}
+.eyebrow-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+h1{font-family:var(--serif);font-size:clamp(3.2rem,6vw,5.8rem);font-weight:400;line-height:1.06;letter-spacing:-0.025em;margin-bottom:1.6rem;color:var(--black)}
+h1 em{font-style:italic;color:var(--blue)}
+.hero-sub{font-size:1.1rem;color:var(--gray);max-width:500px;margin-bottom:2rem;line-height:1.7}
+.ai-logos{display:flex;align-items:center;gap:0.55rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.ai-label{font-size:0.72rem;color:var(--gray);margin-right:0.2rem;font-weight:300;white-space:nowrap}
+.ai-logo-chip{display:inline-flex;align-items:center;gap:0.45rem;padding:0.32rem 0.8rem;border:1px solid var(--border);font-size:0.76rem;font-weight:500;color:var(--gray);background:var(--gray-lt);white-space:nowrap}
+.ai-logo-chip svg{width:15px;height:15px;flex-shrink:0}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.2rem;background:var(--black);color:var(--white);font-size:0.9rem;font-weight:500;font-family:var(--sans);text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;letter-spacing:0.02em}
+.btn-primary:hover{background:var(--blue);transform:translateY(-2px)}
+.btn-primary .arr{transition:transform 0.2s}
+.btn-primary:hover .arr{transform:translateX(4px)}
+.btn-ghost{font-size:0.85rem;color:var(--gray);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
+.btn-ghost:hover{color:var(--black);border-color:var(--black)}
+
+/* SECTIONS */
+section{padding:6rem 6vw}
+.inner{max-width:1080px;margin:0 auto}
+.section-label{font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
+h2{font-family:var(--serif);font-size:clamp(2rem,3.8vw,3rem);font-weight:400;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.2rem}
+h2 em{font-style:italic;color:var(--blue)}
+
+/* TRUST BAR */
+.trust{background:var(--gray-lt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.8rem 6vw}
+.trust-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:0.7rem;font-size:0.82rem;color:var(--gray);font-weight:400}
+.trust-item svg{width:17px;height:17px;flex-shrink:0;color:var(--blue)}
+.trust-divider{width:1px;height:24px;background:var(--border)}
+
+/* PROBLEM */
+.problem{background:var(--white);border-bottom:1px solid var(--border)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:2.5rem}
+.problem-lead{font-size:1.15rem;color:var(--black);line-height:1.65;margin-bottom:1.2rem;font-weight:400}
+.problem-body{font-size:0.92rem;color:var(--gray);line-height:1.75}
+.problem-body strong{color:var(--black);font-weight:500}
+.stat-stack{display:flex;flex-direction:column;gap:0}
+.stat-item{display:flex;align-items:flex-start;gap:1.4rem;padding:1.4rem 1.6rem;border:1px solid var(--border);border-bottom:none;transition:background 0.2s}
+.stat-item:last-child{border-bottom:1px solid var(--border)}
+.stat-item:hover{background:var(--blue-dim)}
+.stat-num{font-family:var(--serif);font-size:2.6rem;color:var(--blue);line-height:1;min-width:90px;flex-shrink:0}
+.stat-body{padding-top:0.3rem}
+.stat-body strong{display:block;font-size:0.88rem;font-weight:500;color:var(--black);margin-bottom:0.15rem}
+.stat-body p{font-size:0.8rem;color:var(--gray);line-height:1.5}
+.stat-src{font-size:0.67rem;color:#adb5bd;margin-top:0.3rem;font-style:italic}
+
+/* AI PLATFORMS */
+.ai-section{background:var(--gray-lt);border-bottom:1px solid var(--border);padding:5rem 6vw}
+.ai-section-inner{max-width:1080px;margin:0 auto;text-align:center}
+.ai-section h2{margin-bottom:0.7rem}
+.ai-section .sub{font-size:0.95rem;color:var(--gray);margin-bottom:3rem;max-width:420px;margin-left:auto;margin-right:auto}
+.ai-platform-row{display:flex;justify-content:center;align-items:stretch;gap:1px;background:var(--border)}
+.ai-platform{flex:1;min-width:180px;background:var(--white);padding:2.2rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;transition:background 0.2s;cursor:default}
+.ai-platform:hover{background:var(--blue-dim)}
+.ai-platform-icon{width:40px;height:40px}
+.ai-platform-name{font-size:0.9rem;font-weight:500;color:var(--black)}
+.ai-platform-q{font-size:0.78rem;color:var(--gray);font-style:italic;line-height:1.5;text-align:center}
+
+/* OPPORTUNITY */
+.opportunity{background:var(--white);border-bottom:1px solid var(--border)}
+.opp-hero{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;padding:2.5rem;border:1px solid var(--border);margin:2.5rem 0}
+.opp-nums{display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap}
+.opp-big{font-family:var(--serif);font-size:4.2rem;color:var(--blue);line-height:1}
+.opp-vs{font-size:0.72rem;font-weight:500;color:var(--gray);letter-spacing:0.1em;padding:0 0.8rem;border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.opp-small{font-family:var(--serif);font-size:4.2rem;color:#d1d5db;line-height:1}
+.opp-sub{font-size:0.72rem;color:var(--gray);margin-top:0.3rem}
+.opp-sub strong{color:var(--black);font-weight:500;display:block}
+.opp-note{font-size:0.65rem;color:#adb5bd;font-style:italic;margin-top:0.8rem}
+.opp-body{font-size:0.98rem;color:var(--gray);line-height:1.75}
+.opp-body strong{color:var(--black);font-weight:500}
+.opp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.opp-card{background:var(--white);padding:2rem;transition:background 0.2s}
+.opp-card:hover{background:var(--blue-dim)}
+.opp-card-tag{font-size:0.67rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);margin-bottom:0.7rem;display:block}
+.opp-card-num{font-family:var(--serif);font-size:2.8rem;color:var(--black);line-height:1;margin-bottom:0.7rem}
+.opp-card p{font-size:0.84rem;color:var(--gray);line-height:1.65}
+.opp-card p strong{color:var(--black);font-weight:500}
+
+/* DIFFERENT */
+.different{background:var(--gray-lt);border-bottom:1px solid var(--border)}
+.diff-compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:3rem}
+.diff-col{background:var(--white);padding:2.5rem}
+.diff-col.us{background:var(--navy)}
+.diff-col-label{font-size:0.67rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.8rem;display:inline-block;padding:0.3rem 0.7rem}
+.diff-col.them .diff-col-label{color:var(--gray);border:1px solid var(--border)}
+.diff-col.us .diff-col-label{color:#93c5fd;border:1px solid rgba(147,197,253,0.2)}
+.diff-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--border)}
+.diff-col.us .diff-item{border-color:rgba(255,255,255,0.06)}
+.diff-item:last-child{border-bottom:none}
+.diff-icon{font-size:0.9rem;flex-shrink:0;margin-top:0.12rem}
+.diff-item p{font-size:0.87rem;line-height:1.6}
+.diff-col.them .diff-item p{color:var(--gray)}
+.diff-col.them .diff-item p strong{color:var(--black);font-weight:500}
+.diff-col.us .diff-item p{color:rgba(226,232,240,0.7)}
+.diff-col.us .diff-item p strong{color:#fff;font-weight:500}
+
+/* SPRINT */
+.sprint{background:var(--white);border-bottom:1px solid var(--border)}
+.sprint-intro{max-width:520px;margin-bottom:3.5rem}
+.sprint-intro p{font-size:0.95rem;color:var(--gray);line-height:1.75}
+.sprint-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.phase{background:var(--white);padding:2.2rem;position:relative}
+.phase-num{font-family:var(--serif);font-size:4rem;color:#f3f4f6;line-height:1;position:absolute;top:1.5rem;right:1.8rem;pointer-events:none;user-select:none}
+.phase-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--black);margin-bottom:0.25rem}
+.phase-dur{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;color:var(--blue);text-transform:uppercase;margin-bottom:1.2rem}
+.phase p{font-size:0.87rem;color:var(--gray);line-height:1.7;margin-bottom:1.2rem}
+.phase p strong{color:var(--black);font-weight:500}
+.phase-items{display:flex;flex-direction:column;gap:0.42rem}
+.phase-item{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.8rem;color:var(--gray)}
+.phase-item::before{content:'—';color:var(--blue);flex-shrink:0}
+
+.sprint-price{margin-top:1px;padding:2.2rem 2.5rem;background:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.sprint-price-left p{font-size:0.87rem;color:rgba(226,232,240,0.6);line-height:1.65;max-width:480px}
+.sprint-price-left p strong{color:#fff;font-weight:500}
+.price-block{text-align:right;flex-shrink:0}
+.price-amt{font-family:var(--serif);font-size:3.5rem;color:#fff;line-height:1}
+.price-period{font-size:0.78rem;color:rgba(226,232,240,0.45);margin-top:0.25rem}
+.price-note{font-size:0.7rem;color:rgba(147,197,253,0.65);margin-top:0.15rem}
+.btn-white{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.8rem;background:var(--white);color:var(--navy);font-size:0.87rem;font-weight:500;font-family:var(--sans);text-decoration:none;letter-spacing:0.02em;transition:background 0.2s,transform 0.15s;white-space:nowrap;margin-top:1.1rem}
+.btn-white:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+
+/* FINAL CTA */
+.final-cta{background:var(--white);text-align:center;padding:8rem 6vw;border-top:1px solid var(--border)}
+.final-cta h2{margin-bottom:1rem}
+.final-cta .sub{font-size:1rem;color:var(--gray);max-width:440px;margin:0 auto 1.5rem;line-height:1.7}
+.invest-line{font-family:var(--serif);font-size:1.05rem;color:var(--gray);margin-bottom:2rem}
+.invest-line strong{color:var(--black);font-weight:400}
+.urgency{font-size:0.78rem;color:var(--gray);margin-top:1.2rem;display:flex;align-items:center;justify-content:center;gap:0.5rem}
+.urgency-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+
+/* FOOTER */
+footer{padding:1.8rem 6vw;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer p{font-size:0.75rem;color:#adb5bd}
+.footer-logo{font-family:var(--serif);font-size:1rem;color:var(--gray)}
+.footer-logo span{color:var(--blue)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .problem-grid,.diff-compare,.sprint-phases,.opp-cards,.opp-hero{grid-template-columns:1fr}
+  .nav-links{display:none}
+  h1{font-size:2.8rem}
+  .hero-prism{opacity:0.07;width:100vw}
+  .sprint-price{flex-direction:column;text-align:center}
+  .price-block{text-align:center}
+  .trust-divider{display:none}
+  .ai-platform-row{flex-wrap:wrap}
+  .ai-platform{min-width:calc(50% - 1px)}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-content>*{animation:fadeUp 0.65s ease both}
+.hero-content>*:nth-child(1){animation-delay:0.1s}
+.hero-content>*:nth-child(2){animation-delay:0.22s}
+.hero-content>*:nth-child(3){animation-delay:0.34s}
+.hero-content>*:nth-child(4){animation-delay:0.46s}
+.hero-content>*:nth-child(5){animation-delay:0.58s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Beyond<span>Visibility</span></a>
+  <div class="nav-links">
+    <a href="#problem">The Problem</a>
+    <a href="#how">The 90-day Sprint</a>
+    <a href="#different">Why Us</a>
+  </div>
+  <a href="#book" class="nav-cta">Book a Free Call &nbsp;→</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-prism" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="ib" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#000" stop-opacity="0"/><stop offset="50%" stop-color="#000" stop-opacity="0.5"/><stop offset="100%" stop-color="#000" stop-opacity="0.85"/></linearGradient>
+      <linearGradient id="gf" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#444" stop-opacity="0.1"/><stop offset="100%" stop-color="#222" stop-opacity="0.06"/></linearGradient>
+      <linearGradient id="r1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff2244" stop-opacity="1"/><stop offset="70%" stop-color="#cc1144" stop-opacity="0.3"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="r2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff6600" stop-opacity="1"/><stop offset="70%" stop-color="#cc4400" stop-opacity="0.28"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="r3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ddcc00" stop-opacity="1"/><stop offset="70%" stop-color="#aaa000" stop-opacity="0.25"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="r4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00cc44" stop-opacity="1"/><stop offset="70%" stop-color="#009933" stop-opacity="0.25"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="r5" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00aaee" stop-opacity="1"/><stop offset="70%" stop-color="#0077aa" stop-opacity="0.3"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="r6" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1144ff" stop-opacity="1"/><stop offset="70%" stop-color="#0022cc" stop-opacity="0.32"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="r7" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8800dd" stop-opacity="0.9"/><stop offset="70%" stop-color="#550099" stop-opacity="0.25"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    </defs>
+    <polygon points="0,249 0,251 268,249.5 268,250.5" fill="url(#ib)"/>
+    <polygon points="268,100 268,400 420,250" fill="url(#gf)" stroke="#888" stroke-width="0.7" stroke-opacity="0.35"/>
+    <line x1="268" y1="100" x2="268" y2="400" stroke="#555" stroke-width="0.8" stroke-opacity="0.4"/>
+    <line x1="268" y1="100" x2="420" y2="250" stroke="#666" stroke-width="0.5" stroke-opacity="0.3"/>
+    <line x1="268" y1="400" x2="420" y2="250" stroke="#666" stroke-width="0.5" stroke-opacity="0.3"/>
+    <ellipse cx="268" cy="250" rx="2.5" ry="5" fill="#000" fill-opacity="0.3"/>
+    <polygon points="420,249.5 420,250.5 680,95 680,118" fill="url(#r1)" opacity="0.9"/>
+    <polygon points="420,249.5 420,250.5 680,118 680,158" fill="url(#r2)" opacity="0.88"/>
+    <polygon points="420,249.5 420,250.5 680,158 680,205" fill="url(#r3)" opacity="0.85"/>
+    <polygon points="420,249.5 420,250.5 680,205 680,258" fill="url(#r4)" opacity="0.84"/>
+    <polygon points="420,249.5 420,250.5 680,258 680,312" fill="url(#r5)" opacity="0.88"/>
+    <polygon points="420,249.5 420,250.5 680,312 680,368" fill="url(#r6)" opacity="0.9"/>
+    <polygon points="420,249.5 420,250.5 680,368 680,415" fill="url(#r7)" opacity="0.82"/>
+    <line x1="420" y1="250" x2="680" y2="95"  stroke="#ff2244" stroke-width="0.5" opacity="0.45"/>
+    <line x1="420" y1="250" x2="680" y2="118" stroke="#ff6600" stroke-width="0.4" opacity="0.38"/>
+    <line x1="420" y1="250" x2="680" y2="158" stroke="#ccbb00" stroke-width="0.4" opacity="0.32"/>
+    <line x1="420" y1="250" x2="680" y2="205" stroke="#00cc44" stroke-width="0.4" opacity="0.32"/>
+    <line x1="420" y1="250" x2="680" y2="258" stroke="#00aaee" stroke-width="0.4" opacity="0.38"/>
+    <line x1="420" y1="250" x2="680" y2="312" stroke="#1144ff" stroke-width="0.5" opacity="0.42"/>
+    <line x1="420" y1="250" x2="680" y2="368" stroke="#8800dd" stroke-width="0.4" opacity="0.35"/>
+    <circle cx="420" cy="250" r="4" fill="#000" fill-opacity="0.08"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> Answer Engine Optimisation</div>
+    <h1>AI doesn't know<br>you <em>exist.</em><br>We fix that.</h1>
+    <p class="hero-sub">A 90-day plan to get your business recommended by AI — before your competitors take the spot.</p>
+    <div class="hero-cta">
+      <a href="#book" class="btn-primary">Book a Free Call <span class="arr">→</span></a>
+      <a href="#how" class="btn-ghost">See the 90-day Sprint →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Done for you — not a report
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      90 days. No ongoing fees.
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      Written in your brand voice
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+      You own everything we build
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="inner">
+    <p class="section-label">The Problem</p>
+    <div class="problem-grid">
+      <div>
+        <p class="problem-lead">Buyers have stopped scrolling. They ask AI — and go with what it tells them.</p>
+        <p class="problem-body">ChatGPT, Perplexity and Gemini are now the first stop for millions of purchase decisions every day. <strong>If AI doesn't recommend you, you've already lost the sale</strong> — before the customer ever sees your website.</p>
+      </div>
+      <div class="stat-stack">
+        <div class="stat-item">
+          <div class="stat-num">61%</div>
+          <div class="stat-body">
+            <strong>Drop in clicks when AI answers first</strong>
+            <p>Users don't scroll past it.</p>
+            <div class="stat-src">The SEO Spot, Sept 2025</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">78%</div>
+          <div class="stat-body">
+            <strong>Book based on AI's recommendation</strong>
+            <p>The decision is made inside the chat.</p>
+            <div class="stat-src">HFTP / TakeUp, Jan 2026</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4.4×</div>
+          <div class="stat-body">
+            <strong>Higher conversion from AI visitors</strong>
+            <p>They arrive already convinced.</p>
+            <div class="stat-src">Semrush, 2025/2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section class="opportunity" id="opportunity">
+  <div class="inner">
+    <p class="section-label">The Opportunity</p>
+    <h2>The window is open.<br><em>Not for long.</em></h2>
+    <p style="font-size:1.05rem;color:var(--gray);max-width:620px;margin:1.5rem 0 2.5rem;line-height:1.75">AI visitors don't browse. <strong style="color:var(--black);font-weight:500">They arrive ready to buy.</strong> The comparison happened inside the chat. By the time someone lands on your site, the decision is already made. Being cited by AI isn't a nice-to-have — it's where the sale begins.</p>
+    <div class="opp-cards">
+      <div class="opp-card">
+        <span class="opp-card-tag">Right now</span>
+        <div class="opp-card-num">Now</div>
+        <p><strong>Most competitors are invisible to AI.</strong> The brands who move first claim the space before it gets crowded.</p>
+      </div>
+      <div class="opp-card">
+        <span class="opp-card-tag">The sprint</span>
+        <div class="opp-card-num">90 days</div>
+        <p><strong>Three focused months</strong> of technical, content and authority work — and you become the answer AI gives.</p>
+      </div>
+      <div class="opp-card">
+        <span class="opp-card-tag">Long term</span>
+        <div class="opp-card-num">∞</div>
+        <p><strong>Compounding visibility.</strong> Unlike ads, AI citations build on themselves. Authority compounds over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENT -->
+<section class="different" id="different">
+  <div class="inner">
+    <p class="section-label">Why We're Different</p>
+    <h2>Most agencies give you<br>a report. We give you<br><em>results.</em></h2>
+    <div class="diff-compare">
+      <div class="diff-col them">
+        <div class="diff-col-label">Every other agency</div>
+        <div class="diff-item">
+          <div class="diff-icon">✕</div>
+          <p><strong>Audit and disappear.</strong> A 40-page PDF of everything wrong. You figure out how to fix it.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon">✕</div>
+          <p><strong>Generic content.</strong> Keyword-stuffed articles that sound like no one — and that AI ignores.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon">✕</div>
+          <p><strong>Monthly retainer, minimal progress.</strong> Same calls. Same slides. Different invoice.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon">✕</div>
+          <p><strong>They don't learn you.</strong> Same template. Same strategy. Every client.</p>
+        </div>
+      </div>
+      <div class="diff-col us">
+        <div class="diff-col-label">Beyond Visibility</div>
+        <div class="diff-item">
+          <div class="diff-icon" style="color:#60a5fa">→</div>
+          <p><strong>We do the work.</strong> Every technical fix, every content piece — built by us, not briefed to you.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon" style="color:#60a5fa">→</div>
+          <p><strong>We learn your voice first.</strong> We study how you speak, how customers describe you, what makes you genuinely different. Then we write that.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon" style="color:#60a5fa">→</div>
+          <p><strong>One sprint, lasting results.</strong> 90 days of intensive work. At the end, you own it all. No dependency.</p>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon" style="color:#60a5fa">→</div>
+          <p><strong>Your brand sounds like you.</strong> Content that only you could have written. That's what AI cites. That's what people trust.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPRINT -->
+<section class="sprint" id="how">
+  <div class="inner">
+    <p class="section-label">The Visibility Sprint</p>
+    <h2>Three phases.<br><em>Zero guesswork.</em></h2>
+    <div class="sprint-intro">
+      <p>One intensive 90-day programme — fully done for you. No monthly retainer. No ongoing fees. Just the focused work that moves you from invisible to cited.</p>
+    </div>
+    <div class="sprint-phases">
+      <div class="phase">
+        <div class="phase-num">01</div>
+        <div class="phase-title">Research & Discovery</div>
+        <div class="phase-dur">Weeks 1 – 3</div>
+        <p>We start by <strong>learning you</strong> — your voice, your customers, and exactly where AI currently misses you.</p>
+        <div class="phase-items">
+          <div class="phase-item">AI visibility audit across all major models</div>
+          <div class="phase-item">Brand voice & tone deep-dive</div>
+          <div class="phase-item">Buyer intent & persona mapping</div>
+          <div class="phase-item">Competitor citation analysis</div>
+          <div class="phase-item">Technical & content gap report</div>
+        </div>
+      </div>
+      <div class="phase" style="border-left:1px solid var(--border);border-right:1px solid var(--border)">
+        <div class="phase-num">02</div>
+        <div class="phase-title">Build & Fix</div>
+        <div class="phase-dur">Weeks 4 – 8</div>
+        <p>We fix what makes AI skip you, then build the content that makes AI <strong>quote you</strong> — written entirely in your voice.</p>
+        <div class="phase-items">
+          <div class="phase-item">Technical crawler & schema setup</div>
+          <div class="phase-item">Answer-first page rewrites in your brand voice</div>
+          <div class="phase-item">FAQ & sub-query content</div>
+          <div class="phase-item">E-E-A-T authority assets</div>
+          <div class="phase-item">Directory & data distribution</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num">03</div>
+        <div class="phase-title">Amplify</div>
+        <div class="phase-dur">Weeks 9 – 12</div>
+        <p>We build the web-wide consensus that tells every AI model <strong>you are the authority</strong> in your category.</p>
+        <div class="phase-items">
+          <div class="phase-item">Review platform strategy</div>
+          <div class="phase-item">"Best of" editorial placement</div>
+          <div class="phase-item">Activating Reddit, Quora & UGC presence</div>
+          <div class="phase-item">Citation & authority building</div>
+          <div class="phase-item">Final report & handover playbook</div>
+        </div>
+      </div>
+    </div>
+    <div class="sprint-price">
+      <div class="sprint-price-left">
+        <p><strong>One package. Done for you. You own everything.</strong><br>At the end of the sprint, the content, technical setup and authority signals are yours — no ongoing fees required to maintain your visibility.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1rem">
+        <div class="price-block">
+          <div class="price-amt">$899</div>
+          <div class="price-period">Full 3-month sprint</div>
+          <div class="price-note">One-time investment. No retainer.</div>
+        </div>
+        <a href="#book" class="btn-white">Claim your spot &nbsp;→</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="book">
+  <p class="section-label">Let's Talk</p>
+  <h2>Most businesses<br>haven't noticed<br>this shift yet.</h2>
+  <p class="sub">The brands who move first build an advantage that takes years to close. Book a free 30-minute call — no pitch, no pressure. Just an honest look at where you stand.</p>
+  <div class="invest-line">Full 3-month sprint &nbsp;·&nbsp; <strong>$899 one-time</strong> &nbsp;·&nbsp; No retainer</div>
+  <a href="https://calendly.com" target="_blank" class="btn-primary" style="font-size:0.95rem;padding:1.1rem 2.5rem">
+    Book a Free Call &nbsp;<span class="arr">→</span>
+  </a>
+  <div class="urgency">
+    <span class="urgency-dot"></span>
+    Spots are limited — we take on a small number of clients each month
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Beyond<span>Visibility</span></div>
+  <p>Answer Engine Optimisation &nbsp;·&nbsp; 90-Day Visibility Sprint</p>
+  <p>© 2025 Beyond Visibility. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
