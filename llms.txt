@@ -1,0 +1,8 @@
+# Beyond Visibility
+
+> Grades content and web pages for how likely AI answer engines (ChatGPT, Perplexity, Claude, Google AI Overviews) are to retrieve, trust, and cite them. Two tools: a Content Grader (pasted text/Markdown, scored across 7 weighted categories) and a Web Grader (a live URL, scored on a Technical Score across 5 categories plus the same Content Score).
+
+## Pages
+
+- [Home](https://beyondvisibility.live/): Product overview, the Web Grader and Content Grader, and how each is scored.
+- [About](https://beyondvisibility.live/about): What AEO and AISO mean, how they evolved from SEO, how an answer engine's retrieval pipeline actually works, and the exact rubric weights behind every score.
