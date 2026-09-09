@@ -1,4 +1,4 @@
-# The five AI crawlers this site's own Web Grader checks for.
+# The five AI crawlers this site's own Technical Grader checks for.
 User-agent: GPTBot
 Allow: /
 
