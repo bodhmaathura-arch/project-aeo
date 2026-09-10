@@ -1,8 +1,8 @@
 # Beyond Visibility
 
-> Grades a live URL for how likely AI answer engines (ChatGPT, Perplexity, Claude, Google AI Overviews) are to retrieve, trust, and cite it. The Technical Grader scores a Technical Score (crawler access, schema, metadata, freshness, extractability — 5 categories) and a Content Score for the page's own writing (AI Answerability, Structure & Chunking, Citations, and more — 7 categories), from one submission. A standalone paste/upload Content Grader for unpublished drafts is coming back soon.
+> Grades a live URL for how likely AI answer engines (ChatGPT, Perplexity, Claude, Google AI Overviews) are to retrieve and parse it. The Technical Grader scores a Technical Score across 5 categories (schema, AI crawler access, metadata, freshness, extractability) — deterministic checks, no model call. A standalone Content Grader, scoring the writing itself (AI Answerability, Structure & Chunking, Citations, and more — 7 categories) for pasted text or an uploaded file, is coming back soon.
 
 ## Pages
 
-- [Home](https://beyondvisibility.live/): Product overview, the Technical Grader, and how each score is calculated.
+- [Home](https://beyondvisibility.live/): Product overview, the Technical Grader, and how the score is calculated.
 - [About](https://beyondvisibility.live/about): What AEO and AISO mean, how they evolved from SEO, how an answer engine's retrieval pipeline actually works, and the exact rubric weights behind every score.
