@@ -5,4 +5,4 @@
 ## Pages
 
 - [Home](https://beyondvisibility.live/): Product overview, the Technical Grader, and how the score is calculated.
-- [About](https://beyondvisibility.live/101): What AEO and AISO mean, how they evolved from SEO, how an answer engine's retrieval pipeline actually works, and the exact rubric weights behind every score.
+- [101](https://beyondvisibility.live/101): What AEO and AISO mean, how they evolved from SEO, how an answer engine's retrieval pipeline actually works, and the exact rubric weights behind every score.
